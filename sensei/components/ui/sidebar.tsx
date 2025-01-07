@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { ImageIcon, LayoutDashboard, MessageSquare, Music, Settings, VideoIcon } from "lucide-react";
+import { CodeSquareIcon, ImageIcon, LayoutDashboard, MessageSquare, Music, Settings, VideoIcon } from "lucide-react";
 import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
@@ -36,6 +36,12 @@ const routes = [{
     label: "Image",
     href: "/image",
     icon: ImageIcon
+  },
+  {
+    color: "text-blue-500",
+    label: "Code",
+    href: "/code",
+    icon: CodeSquareIcon
   },
   {
     color: "text-gray-500",

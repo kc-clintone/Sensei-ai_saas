@@ -2,21 +2,21 @@
 
 import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
-import { ChevronRightSquareIcon, ImageIcon, MessageSquare, Music, Video } from 'lucide-react';
+import { ChevronRightSquareIcon, CodeSquareIcon, ImageIcon, MessageSquare, Music, Video } from 'lucide-react';
 import React from 'react'
 
 const items = [
   {
     label: "Music generation",
     icon: Music,
-    color: "text-blue-500",
+    color: "text-emerald-500",
     bgColor: "bg-emerald-500/10",
     href: "/music",
   },
   {
     label: "Video generation",
     icon: Video,
-    color: "text-blue-500",
+    color: "text-orange-500",
     bgColor: "bg-orange-500/10",
     href: "/video",
   },
@@ -24,22 +24,22 @@ const items = [
     label: "Chat",
     icon: MessageSquare,
     color: "text-yellow-500",
-    bgColor: "bg-blue-500/10",
+    bgColor: "bg-yellow-500/10",
     href: "/chat",
   },
   {
     label: "Image generation",
     icon: ImageIcon,
-    color: "text-blue-500",
+    color: "text-pink-500",
     bgColor: "bg-pink-500/10",
     href: "/image",
   },
   {
-    label: "Chat",
-    icon: MessageSquare,
+    label: "Code generation",
+    icon: CodeSquareIcon,
     color: "text-blue-500",
     bgColor: "bg-blue-500/10",
-    href: "/chat",
+    href: "/code",
   },
 ]
 
