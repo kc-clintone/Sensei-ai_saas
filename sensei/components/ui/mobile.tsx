@@ -8,8 +8,20 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Sidebar from "./sidebar";
+import { useEffect, useState } from "react";
 
 const MobileMenu = () => {
+  
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    setIsOpen(true);
+  }, []);
+
+  if (!isOpen) {
+    return null
+  }
+  
   return (
     <Sheet>
       <SheetTrigger>
@@ -17,7 +29,7 @@ const MobileMenu = () => {
           <Menu/>
         </Button>
       </SheetTrigger>
-      <SheetContent className="p-0" side="bottom">
+      <SheetContent className="p-0" side="right">
         <Sidebar/>
       </SheetContent>
     </Sheet>

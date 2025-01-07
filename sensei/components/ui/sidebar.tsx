@@ -5,6 +5,7 @@ import { ImageIcon, LayoutDashboard, MessageSquare, Music, Settings, VideoIcon }
 import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const routes = [{
     color: "text-blue-500",
@@ -50,6 +51,9 @@ const CustomFont = Montserrat({
 })
 
 const Sidebar = () => {
+
+  const path = usePathname();
+
   return (
     <div className="bg-gray-900 space-y-5 py-5 h-full flex flex-col text-white">
       <div className="p-3 flex-1">
@@ -72,9 +76,8 @@ const Sidebar = () => {
               <Link
                 href={routeName.href}
                 key={routeName.href}
-                className="group p-3 flex font-medium font-mediu
-                justify-start w-full hover:text-white
-                hover:bg-white/10 transition rounded-lg"  
+                className={cn("group p-3 flex font-medium font-mediu justify-start w-full hover:text-white hover:bg-white/10 transition rounded-lg",
+                path === routeName.href ? "bg-white/10 text-white" : "text-zinc-500")}
               >
                 <div className="flex flex-1 items-center">
                   <routeName.icon className={cn("w-6 h-6 mr-3", routeName.color)} />
