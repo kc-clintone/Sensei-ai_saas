@@ -2,10 +2,38 @@
 
 import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
-import { MessageSquare } from 'lucide-react';
+import { ChevronRightSquareIcon, ImageIcon, MessageSquare, Music, Video } from 'lucide-react';
 import React from 'react'
 
 const items = [
+  {
+    label: "Music generation",
+    icon: Music,
+    color: "text-blue-500",
+    bgColor: "bg-emerald-500/10",
+    href: "/music",
+  },
+  {
+    label: "Video generation",
+    icon: Video,
+    color: "text-blue-500",
+    bgColor: "bg-orange-500/10",
+    href: "/video",
+  },
+  {
+    label: "Chat",
+    icon: MessageSquare,
+    color: "text-yellow-500",
+    bgColor: "bg-blue-500/10",
+    href: "/chat",
+  },
+  {
+    label: "Image generation",
+    icon: ImageIcon,
+    color: "text-blue-500",
+    bgColor: "bg-pink-500/10",
+    href: "/image",
+  },
   {
     label: "Chat",
     icon: MessageSquare,
@@ -35,11 +63,12 @@ function Dashboard() {
               key={item.href}
             >
               <div className="gap-x-4 flex items-center">
-                <div className={cn("w-fit rounded-md pr-2", item.bgColor)}>
+                <div className={cn("w-fit rounded-md p-2", item.bgColor)}>
                   <item.icon className={cn("w-8 h-8", item.color)} />
-                  <div className="font-semibold">{item.label}</div>
                 </div>
+                <div className="font-semibold">{item.label}</div>
               </div>
+              <ChevronRightSquareIcon className="w-5 h-5"/>
             </Card>
           ))
         }
