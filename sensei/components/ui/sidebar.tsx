@@ -8,7 +8,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const routes = [{
-    color: "text-blue-500",
+    color: "text-violet-500",
     label: "Dashboard",
     href: "/dashboard",
     icon: LayoutDashboard,

@@ -3,6 +3,7 @@
 import { Card } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import { ChevronRightSquareIcon, CodeSquareIcon, ImageIcon, MessageSquare, Music, Video } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import React from 'react'
 
 const items = [
@@ -21,7 +22,7 @@ const items = [
     href: "/video",
   },
   {
-    label: "Chat",
+    label: "Chat with Sensei",
     icon: MessageSquare,
     color: "text-yellow-500",
     bgColor: "bg-yellow-500/10",
@@ -44,6 +45,9 @@ const items = [
 ]
 
 function Dashboard() {
+
+  const router = useRouter();
+
   return (
     <div>
       <div className="mb-8 space-y-4">
@@ -59,6 +63,7 @@ function Dashboard() {
         {
           items.map((item) => (
             <Card
+              onClick={() => router.push(item.href)}
               className="border-black/5 p-4 items-center flex justify-between hover:shadow-md cursor-pointer transition"
               key={item.href}
             >
