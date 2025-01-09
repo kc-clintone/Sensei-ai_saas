@@ -61,12 +61,15 @@ const ChatPage = () => {
                 </FormItem>
               )}
             />
-            <Button className="col-span-10 lg:col-span-2">
+            <Button className="col-span-10 lg:col-span-2 w-full" disabled={isLoading}>
               Send
               <SendIcon className="w-6 h-6 text-white"/>
             </Button>
           </form>
         </Form>
+      </div>
+      <div className="mt-4 space-y-4">
+        content
       </div>
     </div>
   )
