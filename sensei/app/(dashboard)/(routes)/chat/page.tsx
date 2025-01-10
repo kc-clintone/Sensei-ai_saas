@@ -19,6 +19,9 @@ import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { Nothing } from "@/components/ui/nothing";
+import { Loader } from "@/components/ui/loader";
+import { cn } from "@/lib/utils";
 
 const ChatPage = () => {
 
@@ -99,16 +102,27 @@ const ChatPage = () => {
         </div>
 
         <div className="mt-4 space-y-4">
+          {
+            isLoading && (
+              <div className="items-center rounded-lg flex w-full p-8 bg-muted justify-center">
+                <Loader label="Wait a minute, I'm thinking..."/>
+              </div>
+            )
+          }
+
           { messages.length === 0 && !isLoading &&
             (
               <div>
-                <Empty/>
+                <Nothing label="Oops!!! No conversations yet"/>
               </div>
             )
           }
           <div className="gap-y-4 flex flex-col-reverse">
             {messages.map((message) => (
-                <div key={message.content}>
+                <div
+                   key={message.content}
+                   className={cn("p-8 w-full flex gap-x-8 items-start", message.role === "user" ? "bg-white border border-black/10" : "bg-muted")}
+                >
                   {message.content}
                 </div>
               ))
