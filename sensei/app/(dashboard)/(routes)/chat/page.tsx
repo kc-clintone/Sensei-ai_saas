@@ -11,24 +11,25 @@ import {
   FormItem,
   FormControl
 } from "@/components/ui/form";
-import { Input } from "a/components/ui/input";
-import * as zd from "zod";
+import { Input } from "@/components/ui/input";
+Input
+import * as z from "zod";
 import { Button } from "@/components/ui/button";
 
 const ChatPage = () => {
 
-  const isLoading = form.formState.isSubmitting;
-
-  const onSubmit = async (values: zd.infer<typeof formSchema) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     console.log(values)
   }
 
-  const form = useForm<zd.infer<typeof formSchema>>({
+  const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       prompt: "",
     }
   })
+
+  const isLoading = form.formState.isSubmitting;
 
   return (
     <div>
@@ -41,35 +42,38 @@ const ChatPage = () => {
       />
 
       <div className="px-4 lg:px-8">
-        <Form {...form}>
-          <form
-            className="rounded-lg p-4 px-3 md:px-6 focus-within:shadow-sm gap-2 grid grid-cols-12 border w-full"
-            onSubmit={form.handleSubmit(onSubmit)}
-          >
-            <FormField
-              name="prompt"
-              render={({field}) => (
-                <FormItem className="col-span-12 lg:col-span-10">
-                  <FormControl className="p-0 m-0">
-                    <Input
-                      className="focus-visible:ring-0 focus-visible:ring-transparent border-0 outline-none"
-                      {...field}
-                      disabled={isLoading}
-                      placeholder="Hey there 👋! How may I help you today?"
-                    />
-                  </FormControl>
-                </FormItem>
-              )}
-            />
-            <Button className="col-span-10 lg:col-span-2 w-full" disabled={isLoading}>
-              Send
-              <SendIcon className="w-6 h-6 text-white"/>
-            </Button>
-          </form>
-        </Form>
-      </div>
-      <div className="mt-4 space-y-4">
-        content
+        <div>
+          <Form {...form}>
+            <form
+               className="rounded-lg p-4 px-3 md:px-6 focus-within:shadow-sm gap-2 grid grid-cols-12 border w-full"
+               onSubmit={form.handleSubmit(onSubmit)}
+            >
+              <FormField
+                name="prompt"
+                render={({field}) => (
+                  <FormItem className="col-span-12 lg:col-span-10">
+                    <FormControl className="p-0 m-0">
+                      <Input
+                        className="focus-visible:ring-0 focus-visible:ring-transparent border-0 outline-none"
+                        {...field}
+                        disabled={isLoading}
+                        placeholder="Hey there 👋! How may I help you today?"
+                      />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <Button className="col-span-12 lg:col-span-2 w-full" disabled={isLoading}>
+                Send
+                <SendIcon className="w-6 h-6 text-white"/>
+              </Button>
+            </form>
+          </Form>
+        </div>
+
+        <div className="mt-4 space-y-4">
+          content
+        </div>
       </div>
     </div>
   )
