@@ -2,7 +2,6 @@
 
 import { Header } from "@/components/ui/header";
 import { MessagesSquare, SendIcon } from "lucide-react";
-import { ChatCompletionRequestMessage } from "openai";
 import { useForm } from "react-hook-form";
 import { formSchema } from "./constants";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,6 +23,11 @@ import { Loader } from "@/components/ui/loader";
 import { cn } from "@/lib/utils";
 
 const ChatPage = () => {
+
+  type ChatCompletionRequestMessage = {
+    role: 'system' | 'user' | 'assistant';
+    content: string;
+  };
 
   const [ messages, setMessages ] = useState<ChatCompletionRequestMessage[]>([]);
   const router = useRouter()

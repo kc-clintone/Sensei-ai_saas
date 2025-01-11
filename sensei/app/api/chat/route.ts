@@ -15,7 +15,7 @@ export async function POST(
   try{
     const { userId } = useAuth();
     const body = await req.json();
-    const { prompt } = body;
+    const { messages } = body;
 
     if (!userId) {
       return new NextResponse("Not authorised", { status: 401 })
@@ -25,13 +25,13 @@ export async function POST(
       return new NextResponse("OpenAi API key not configured", { status: 500})
     }
 
-    if (!prompt) {
+    if (!messages) {
       return new NextResponse("A prompt is required", {status: 400})
     }
 
     const res = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      prompt
+      messages
     });
 
     return NextResponse.json(res.data.choices[0].message);
