@@ -21,6 +21,8 @@ import { useState } from "react";
 import { Nothing } from "@/components/ui/nothing";
 import { Loader } from "@/components/ui/loader";
 import { cn } from "@/lib/utils";
+import { UsrAvater } from "@/components/ui/usr-avatar";
+import { AiAvatar } from "@/components/ui/ai-avatar";
 
 const ChatPage = () => {
 
@@ -127,7 +129,10 @@ const ChatPage = () => {
                    key={message.content}
                    className={cn("p-8 w-full flex gap-x-8 items-start", message.role === "user" ? "bg-white border border-black/10" : "bg-muted")}
                 >
-                  {message.content}
+                  {message.role === "user" ? <UsrAvater /> : <AiAvatar/>}
+                  <p className="text-sm">
+                    {message.content}
+                  </p>
                 </div>
               ))
             }
