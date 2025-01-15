@@ -3,7 +3,7 @@
 import { Header } from "@/components/ui/header";
 import { Image, ImageIcon, SendIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { formSchema } from "./constants";
+import { formSchema, imageQuantity } from "./constants";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import {
@@ -23,31 +23,24 @@ import { Loader } from "@/components/ui/loader";
 import { cn } from "@/lib/utils";
 import { UsrAvater } from "@/components/ui/usr-avatar";
 import { AiAvatar } from "@/components/ui/ai-avatar";
+import { Select, SelectContent, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const ImagePage = () => {
 
-  type ChatCompletionRequestMessage = {
-    role: 'system' | 'user' | 'assistant';
-    content: string;
-  };
-
-  const [ messages, setMessages ] = useState<ChatCompletionRequestMessage[]>([]);
   const router = useRouter()
+
+  const [images, setImages] = useState<string[]>([]);
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const userMessage: ChatCompletionRequestMessage = {
-        role: "user",
-        content: values.prompt
-      };
+      
+      setImages([]);
 
-      const newMessages = [...messages, userMessage];
+      const response = await axios.post("/api/image", values);
 
-      const response = await axios.post("/api/image", {
-        messages: newMessages,
-      });
+      const imgUrls = response.data.map((image: {url: string}) => image.url);
 
-      setMessages((curr) => [...curr, userMessage, response.data]);
+      setImages(imgUrls);
 
       form.reset();
 
@@ -62,6 +55,8 @@ const ImagePage = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       prompt: "",
+      quantity: "1",
+      resolution: "512x512",
     }
   })
 
@@ -87,18 +82,43 @@ const ImagePage = () => {
               <FormField
                 name="prompt"
                 render={({field}) => (
-                  <FormItem className="col-span-12 lg:col-span-10">
+                  <FormItem className="col-span-12 lg:col-span-2">
                     <FormControl className="p-0 m-0">
                       <Input
                         className="focus-visible:ring-0 focus-visible:ring-transparent border-0 outline-none"
                         {...field}
                         disabled={isLoading}
-                        placeholder="Elon Musk on a beach riding a horse on fire"
+                        placeholder="Elon Musk on a beach with a dog"
                       />
                     </FormControl>
                   </FormItem>
                 )}
               />
+
+              <FormField
+                control={form.control}
+                name="quantity"
+                render={({field}) => (
+                  <FormItem className="col-span-12 lg:col-span-2">
+                    <Select
+                      disabled={isLoading}
+                      onValueChange={field.onChange}
+                      value={field.value}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue defaultValue={field.value}/>
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {imageQuantity.map()}
+                      </SelectContent>
+                    </Select>
+                  </FormItem>
+                )}
+              />
+
               <Button className="col-span-12 lg:col-span-2 w-full" disabled={isLoading}>
                 Send
                 <SendIcon className="w-6 h-6 text-white"/>
@@ -110,32 +130,21 @@ const ImagePage = () => {
         <div className="mt-4 space-y-4">
           {
             isLoading && (
-              <div className="items-center rounded-lg flex w-full p-8 bg-muted justify-center">
+              <div className="items-center flex w-full p-8 justify-center">
                 <Loader label="Wait a minute, I'm thinking..."/>
               </div>
             )
           }
 
-          { messages.length === 0 && !isLoading &&
+          { images.length === 0 && !isLoading &&
             (
               <div>
-                <Nothing label="Oops!!! No conversations yet"/>
+                <Nothing label="Oops!!! No images yet"/>
               </div>
             )
           }
-          <div className="gap-y-4 flex flex-col-reverse">
-            {messages.map((message) => (
-                <div
-                   key={message.content}
-                   className={cn("p-8 w-full flex gap-x-8 items-start", message.role === "user" ? "bg-white border border-black/10" : "bg-muted")}
-                >
-                  {message.role === "user" ? <UsrAvater /> : <AiAvatar/>}
-                  <p className="text-sm">
-                    {message.content}
-                  </p>
-                </div>
-              ))
-            }
+          <div className="">
+            Images
           </div>
         </div>
       </div>
