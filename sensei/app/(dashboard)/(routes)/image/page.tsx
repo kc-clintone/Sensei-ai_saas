@@ -23,7 +23,7 @@ import { Loader } from "@/components/ui/loader";
 import { cn } from "@/lib/utils";
 import { UsrAvater } from "@/components/ui/usr-avatar";
 import { AiAvatar } from "@/components/ui/ai-avatar";
-import { Select, SelectContent, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const ImagePage = () => {
 
@@ -82,7 +82,7 @@ const ImagePage = () => {
               <FormField
                 name="prompt"
                 render={({field}) => (
-                  <FormItem className="col-span-12 lg:col-span-2">
+                  <FormItem className="col-span-6 lg:col-span-2">
                     <FormControl className="p-0 m-0">
                       <Input
                         className="focus-visible:ring-0 focus-visible:ring-transparent border-0 outline-none"
@@ -112,7 +112,14 @@ const ImagePage = () => {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {imageQuantity.map()}
+                        {imageQuantity.map((option) => (
+                          <SelectItem
+                            key={option.value}
+                            value={option.value}
+                          >
+                            {option.label}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                   </FormItem>
