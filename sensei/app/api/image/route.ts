@@ -15,7 +15,7 @@ export async function POST(
   try{
     const { userId } = useAuth();
     const body = await req.json();
-    const { messages } = body;
+    const { prompt, quantity=1, resolution="512x512" } = body;
 
     if (!userId) {
       return new NextResponse("Not authorised", { status: 401 })
@@ -25,16 +25,25 @@ export async function POST(
       return new NextResponse("OpenAi API key not configured", { status: 500})
     }
 
-    if (!messages) {
+    if (!prompt) {
       return new NextResponse("A prompt is required", {status: 400})
     }
 
-    const res = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
-      messages
+    if (!quantity) {
+      return new NextResponse("Quantity is required", {status: 400})
+    }
+
+    if (!resolution) {
+      return new NextResponse("Resolution is required", {status: 400})
+    }
+
+    const res = await openai.createImage({
+      prompt: prompt,
+      n: parseInt(quantity, 10),
+      size: resolution,
     });
 
-    return NextResponse.json(res.data.choices[0].message);
+    return NextResponse.json(res.data.data);
 
   } catch (e) {
     console.log("[AN ERROR OCCURED]", e);

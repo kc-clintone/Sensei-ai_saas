@@ -3,7 +3,7 @@
 import { Header } from "@/components/ui/header";
 import { Image, ImageIcon, SendIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
-import { formSchema, imageQuantity } from "./constants";
+import { formSchema, imageQuantity, resOptions } from "./constants";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import {
@@ -24,6 +24,7 @@ import { cn } from "@/lib/utils";
 import { UsrAvater } from "@/components/ui/usr-avatar";
 import { AiAvatar } from "@/components/ui/ai-avatar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Card } from "@/components/ui/card";
 
 const ImagePage = () => {
 
@@ -82,7 +83,7 @@ const ImagePage = () => {
               <FormField
                 name="prompt"
                 render={({field}) => (
-                  <FormItem className="col-span-6 lg:col-span-2">
+                  <FormItem className="col-span-12 lg:col-span-6">
                     <FormControl className="p-0 m-0">
                       <Input
                         className="focus-visible:ring-0 focus-visible:ring-transparent border-0 outline-none"
@@ -126,8 +127,39 @@ const ImagePage = () => {
                 )}
               />
 
+              <FormField
+                control={form.control}
+                name="resolution"
+                render={({field}) => (
+                  <FormItem className="col-span-12 lg:col-span-2">
+                    <Select
+                      disabled={isLoading}
+                      onValueChange={field.onChange}
+                      value={field.value}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue defaultValue={field.value}/>
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {resOptions.map((option) => (
+                          <SelectItem
+                            key={option.value}
+                            value={option.value}
+                          >
+                            {option.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </FormItem>
+                )}
+              />
+
               <Button className="col-span-12 lg:col-span-2 w-full" disabled={isLoading}>
-                Send
+                Create Image
                 <SendIcon className="w-6 h-6 text-white"/>
               </Button>
             </form>
@@ -150,8 +182,15 @@ const ImagePage = () => {
               </div>
             )
           }
-          <div className="">
-            Images
+          <div className="grid mt-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {images.map((url) => (
+              <Card
+                key={src}
+                className="rounded-lg overflow-hidden"
+              >
+
+              </Card>
+            ))}
           </div>
         </div>
       </div>

@@ -11,23 +11,23 @@ export const formSchema = zd.object({
 export const imageQuantity = [
   {
     value: "1",
-    label: "Photo",
+    label: "1 Photo",
   },
   {
     value: "2",
-    label: "Photos",
+    label: "2 Photos",
   },
   {
     value: "3",
-    label: "Photos",
+    label: "3 Photos",
   },
   {
     value: "4",
-    label: "Photos",
+    label: "4 Photos",
   },
   {
     value: "5",
-    label: "Photos",
+    label: "5 Photos",
   }
 ]
 
