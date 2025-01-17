@@ -1,7 +1,7 @@
 "use client";
 
 import { Header } from "@/components/ui/header";
-import { Music4Icon } from "lucide-react";
+import { Music4Icon, SendIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { formSchema } from "./constants";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -20,34 +20,19 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Nothing } from "@/components/ui/nothing";
 import { Loader } from "@/components/ui/loader";
-import { cn } from "@/lib/utils";
-import { UsrAvater } from "@/components/ui/usr-avatar";
-import { AiAvatar } from "@/components/ui/ai-avatar";
 
 const MusicPage = () => {
 
-  type ChatCompletionRequestMessage = {
-    role: 'system' | 'user' | 'assistant';
-    content: string;
-  };
-
-  const [ messages, setMessages ] = useState<ChatCompletionRequestMessage[]>([]);
+  const [ music, setMusic ] = useState<string>();
   const router = useRouter()
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      const userMessage: ChatCompletionRequestMessage = {
-        role: "user",
-        content: values.prompt
-      };
+      setMusic(undefined);
 
-      const newMessages = [...messages, userMessage];
+      const response = await axios.post("/api/music", values);
 
-      const response = await axios.post("/api/music", {
-        messages: newMessages,
-      });
-
-      setMessages((curr) => [...curr, userMessage, response.data]);
+      setMusic(response.data.audio);
 
       form.reset();
 
@@ -111,21 +96,23 @@ const MusicPage = () => {
           {
             isLoading && (
               <div className="items-center rounded-lg flex w-full p-8 bg-muted justify-center">
-                <Loader="Generating..."/>
+                <Loader label="Generating..."/>
               </div>
             )
           }
 
-          { messages.length === 0 && !isLoading &&
+          { music && !isLoading &&
             (
               <div>
                 <Nothing label="Oops!!! No conversations yet"/>
               </div>
             )
           }
-          <div className="gap-y-4 flex flex-col-reverse">
-            
-          </div>
+          {music && (
+            <audio controls className="w-full mt-8">
+              <source src={music} type="audio/mpeg"/>
+            </audio>
+          )}
         </div>
       </div>
     </div>
