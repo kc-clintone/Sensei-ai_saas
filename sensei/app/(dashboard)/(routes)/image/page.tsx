@@ -1,7 +1,7 @@
 "use client";
 
 import { Header } from "@/components/ui/header";
-import { Image, ImageIcon, SendIcon } from "lucide-react";
+import { Download, ImageIcon, SendIcon } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { formSchema, imageQuantity, resOptions } from "./constants";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -24,7 +24,8 @@ import { cn } from "@/lib/utils";
 import { UsrAvater } from "@/components/ui/usr-avatar";
 import { AiAvatar } from "@/components/ui/ai-avatar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Card } from "@/components/ui/card";
+import { Card, CardFooter } from "@/components/ui/card";
+import Image from "next/image";
 
 const ImagePage = () => {
 
@@ -68,7 +69,7 @@ const ImagePage = () => {
       <Header
         title="Image generation"
         description="Turn your wildest imaginations into ellegant images with Sensei AI"
-        icon={Image}
+        icon={ImageIcon}
         iconColor="text-pink-700"
         bgColor="text-pink-700/10"
       />
@@ -183,12 +184,28 @@ const ImagePage = () => {
             )
           }
           <div className="grid mt-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {images.map((url) => (
+            {images.map((src) => (
               <Card
                 key={src}
                 className="rounded-lg overflow-hidden"
               >
-
+                <div className="aspect-square relative">
+                  <Image
+                    fill
+                    alt="Image"
+                    src={src}
+                  />
+                </div>
+                <CardFooter className="p-2">
+                  <Button
+                    variant="secondary"
+                    className="w-full"
+                    onClick={() => window.open(src)}
+                  >
+                    Save
+                    <Download className="h-4 w-4 ml-2"/>
+                  </Button>
+                </CardFooter>
               </Card>
             ))}
           </div>
