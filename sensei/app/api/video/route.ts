@@ -24,18 +24,18 @@ export async function POST(
     }
 
     const response = await replicate.run(
-      "zsxkib/mmaudio:4b9f801a167b1f6cc2db6ba7ffdeb307630bf411841d4e8300e63ca992de0be9",
+      "tencent/hunyuan-video:8283f26be7ce5dc0119324b4752cbfd3970b3ef1b923c4d3c35eb6546518747a",
       {
         input: {
-        seed: -1,
-        video: "https://huggingface.co/hkchengrex/MMAudio/resolve/main/examples/sora_galloping.mp4",
+        fps: 24,
+        width: 864,
+        height: 480,
         prompt: prompt,
-        duration: 8,
-        num_steps: 25,
-        cfg_strength: 4.5,
-        negative_prompt: "music"
+        infer_steps: 50,
+        video_length: 60,
+        embedded_guidance_scale: 6
       }
-    });
+    }); 
 
     return NextResponse.json(response);
 
