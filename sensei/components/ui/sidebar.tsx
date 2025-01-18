@@ -6,6 +6,7 @@ import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { LimitCounter } from "./limitcount";
 
 const routes = [{
     color: "text-violet-500",
@@ -103,7 +104,6 @@ const Sidebar = ({
         </div>
 
       </div>
-
       <LimitCounter appLimit={appLimit} />
     </div>
   )
