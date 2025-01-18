@@ -5,6 +5,7 @@ import { Card, CardContent } from "./card";
 import { Progress } from "./progress";
 import { Button } from "./button";
 import { ZapIcon } from "lucide-react";
+import { useModal } from "@/hooks/usemodal";
 
 interface LimitCountProps {
   appLimit: number;
@@ -15,7 +16,7 @@ const MAX_LIM = 10;
 export const LimitCounter = ({
   appLimit = 0
   }: LimitCountProps) => {
-
+  const upgrade = useModal();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -38,7 +39,7 @@ export const LimitCounter = ({
               className="h-3"
             />
           </div>
-          <Button className="w-full" variant="pro">
+          <Button className="w-full" variant="pro" onClick={upgrade.onOpen}>
             <ZapIcon className="w-5 h-5 mr-2 fill-yellow-500"/>
             Upgrade to Pro
           </Button>

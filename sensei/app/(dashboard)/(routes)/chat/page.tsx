@@ -23,8 +23,11 @@ import { Loader } from "@/components/ui/loader";
 import { cn } from "@/lib/utils";
 import { UsrAvater } from "@/components/ui/usr-avatar";
 import { AiAvatar } from "@/components/ui/ai-avatar";
+import { useModal } from "@/hooks/usemodal";
 
 const ChatPage = () => {
+
+  const upgrade = useModal();
 
   type ChatCompletionRequestMessage = {
     role: 'system' | 'user' | 'assistant';
@@ -52,7 +55,9 @@ const ChatPage = () => {
       form.reset();
 
     } catch (err:any) {
-      console.log(err)
+      if(err?.response?.status === 403) {
+        upgrade.onOpen();
+      }
     } finally {
       router.refresh();
     }

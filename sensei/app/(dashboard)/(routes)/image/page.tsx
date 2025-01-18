@@ -26,8 +26,11 @@ import { AiAvatar } from "@/components/ui/ai-avatar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
+import { useModal } from "@/hooks/usemodal";
 
 const ImagePage = () => {
+
+  const upgrade = useModal();
 
   const router = useRouter()
 
@@ -47,7 +50,9 @@ const ImagePage = () => {
       form.reset();
 
     } catch (err:any) {
-      console.log(err)
+      if(err?.response?.status === 403) {
+        upgrade.onOpen();
+      }
     } finally {
       router.refresh();
     }

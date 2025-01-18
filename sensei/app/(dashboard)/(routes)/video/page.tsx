@@ -20,8 +20,11 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Nothing } from "@/components/ui/nothing";
 import { Loader } from "@/components/ui/loader";
+import { useModal } from "@/hooks/usemodal";
 
 const VideoPage = () => {
+
+  const upgrade = useModal();
 
   const [ video, setVideo ] = useState<string>();
   const router = useRouter()
@@ -37,7 +40,9 @@ const VideoPage = () => {
       form.reset();
 
     } catch (err:any) {
-      console.log(err)
+      if(err?.response?.status === 403) {
+        upgrade.onOpen();
+      }
     } finally {
       router.refresh();
     }
