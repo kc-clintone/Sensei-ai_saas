@@ -1,4 +1,5 @@
 
+import { checkLimit, IncreaseLimit } from "@/lib/limit";
 import { useAuth } from "@clerk/clerk-react";
 import { NextResponse } from "next/server";
 import Replicate from "replicate";
@@ -14,6 +15,11 @@ export async function POST(
     const { userId } = useAuth();
     const body = await req.json();
     const { prompt } = body;
+    const checklimit = checkLimit();
+
+    if (!checklimit) {
+      return new NextResponse("You have exhausted your free trial", { status: 403 })
+    }
 
     if (!userId) {
       return new NextResponse("Not authorised", { status: 401 })
@@ -37,6 +43,7 @@ export async function POST(
       }
     });
 
+    await IncreaseLimit();
     return NextResponse.json(response);
 
   } catch (e) {

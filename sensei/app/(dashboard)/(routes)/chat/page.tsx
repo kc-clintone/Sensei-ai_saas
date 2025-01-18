@@ -93,7 +93,7 @@ const ChatPage = () => {
                         className="focus-visible:ring-0 focus-visible:ring-transparent border-0 outline-none"
                         {...field}
                         disabled={isLoading}
-                        placeholder="Hey there 👋! How may I help you today?"
+                        placeholder="Say hello or enter text here to start chatting with Sensei"
                       />
                     </FormControl>
                   </FormItem>

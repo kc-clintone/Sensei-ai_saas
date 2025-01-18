@@ -51,12 +51,18 @@ const routes = [{
   },
 ]
 
+interface SidebarProps {
+  appLimit: number;
+};
+
 const CustomFont = Montserrat({
   subsets: ["latin"],
   weight: "600"
 })
 
-const Sidebar = () => {
+const Sidebar = ({
+  appLimit = 0
+}: SidebarProps) => {
 
   const path = usePathname();
 
@@ -97,6 +103,8 @@ const Sidebar = () => {
         </div>
 
       </div>
+
+      <LimitCounter appLimit={appLimit} />
     </div>
   )
 }

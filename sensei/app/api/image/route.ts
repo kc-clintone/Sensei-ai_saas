@@ -1,4 +1,5 @@
 
+import { checkLimit, IncreaseLimit } from "@/lib/limit";
 import { useAuth } from "@clerk/clerk-react";
 import { NextResponse } from "next/server";
 import { Configuration, OpenAIApi } from "openai";
@@ -16,6 +17,11 @@ export async function POST(
     const { userId } = useAuth();
     const body = await req.json();
     const { prompt, quantity=1, resolution="512x512" } = body;
+    const checklimit = await checkLimit();
+
+    if (!checklimit) {
+      return new NextResponse("You have exhausted your free trial", { status: 403 })
+    }
 
     if (!userId) {
       return new NextResponse("Not authorised", { status: 401 })
@@ -43,6 +49,7 @@ export async function POST(
       size: resolution,
     });
 
+    await IncreaseLimit()
     return NextResponse.json(res.data.data);
 
   } catch (e) {
