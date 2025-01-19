@@ -36,7 +36,7 @@ export const checkLimit = async () => {
   const {userId} = useAuth();
 
   if (!userId) {
-    return;
+    return 0;
   }
 
   const limit = await prisma.userLimit.findUnique({

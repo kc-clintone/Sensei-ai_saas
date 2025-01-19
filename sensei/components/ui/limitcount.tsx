@@ -31,8 +31,7 @@ export const LimitCounter = ({
         <CardContent className="py-5">
           <div className="text-center text-sm space-y-2 mb-4 text-white">
             <p className="font-medium">
-              {appLimit} / {MAX_LIM} 
-              free trials
+              You have used {appLimit} / {MAX_LIM} of your free trials
             </p>
             <Progress
               value={appLimit / MAX_LIM * 100}
@@ -41,7 +40,7 @@ export const LimitCounter = ({
           </div>
           <Button className="w-full" variant="pro" onClick={upgrade.onOpen}>
             <ZapIcon className="w-5 h-5 mr-2 fill-yellow-500"/>
-            Upgrade to Pro
+            Upgrade now
           </Button>
         </CardContent>
       </Card>

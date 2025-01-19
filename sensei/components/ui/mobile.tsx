@@ -10,8 +10,13 @@ import {
 import Sidebar from "./sidebar";
 import { useEffect, useState } from "react";
 
-const MobileMenu = () => {
-  
+interface MobileMenuProps {
+  appLimit: number;
+}
+
+const MobileMenu = ({
+  appLimit
+  }: MobileMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -30,7 +35,7 @@ const MobileMenu = () => {
         </Button>
       </SheetTrigger>
       <SheetContent className="p-0" side="right">
-        <Sidebar/>
+        <Sidebar appLimit={appLimit}/>
       </SheetContent>
     </Sheet>
 )

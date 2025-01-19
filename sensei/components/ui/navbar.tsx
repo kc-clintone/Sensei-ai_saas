@@ -1,10 +1,12 @@
 import { UserButton } from "@clerk/nextjs";
 import MobileMenu from "./mobile"
+import { getLimit } from "@/lib/limit";
 
-const Navbar = () => {
+const Navbar = async () => {
+  const appLimit = await getLimit();
   return (
     <div className="flex items-center p-4">
-     <MobileMenu/>
+     <MobileMenu appLimit={appLimit}/>
      <div className="flex w-full justify-end">
          <UserButton afterSwitchSessionUrl="/"/>
      </div>

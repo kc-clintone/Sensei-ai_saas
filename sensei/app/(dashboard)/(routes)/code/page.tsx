@@ -22,7 +22,7 @@ import { Nothing } from "@/components/ui/nothing";
 import { Loader } from "@/components/ui/loader";
 import { cn } from "@/lib/utils";
 import { UsrAvater } from "@/components/ui/usr-avatar";
-import { ReactMarkdown } from "react-markdown";
+import ReactMarkdown from "react-markdown";
 import { AiAvatar } from "@/components/ui/ai-avatar";
 import { useModal } from "@/hooks/usemodal";
 
@@ -144,7 +144,7 @@ const CodePage = () => {
                         </div>
                       ),
                       code: ({node, ...props}) => (
-                        <div className="bg-black/10 rounded-lg p-1" {...props}/>
+                        <code className="bg-black/10 rounded-lg p-1" {...props}/>
                       )
                     }}
                     className="leading-7 text-sm overflow-hidden"
