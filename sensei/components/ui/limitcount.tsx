@@ -31,7 +31,7 @@ export const LimitCounter = ({
         <CardContent className="py-5">
           <div className="text-center text-sm space-y-2 mb-4 text-white">
             <p className="font-medium">
-              You have used {appLimit} / {MAX_LIM} of your free trials
+              You've used {appLimit} / {MAX_LIM} of your free trials
             </p>
             <Progress
               value={appLimit / MAX_LIM * 100}
