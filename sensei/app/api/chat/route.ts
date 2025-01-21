@@ -1,5 +1,5 @@
 
-import { checkLimit, IncreaseLimit } from "@/lib/limit";
+import { checkLimit, increaseLimit } from "@/lib/limit";
 import { useAuth } from "@clerk/clerk-react";
 import { NextResponse } from "next/server";
 import { Configuration, OpenAIApi } from "openai";
@@ -41,7 +41,7 @@ export async function POST(
       messages
     });
 
-    await IncreaseLimit();
+    await increaseLimit();
 
     return NextResponse.json(res.data.choices[0].message);
 

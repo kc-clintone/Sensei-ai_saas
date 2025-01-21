@@ -1,5 +1,5 @@
 
-import { checkLimit, IncreaseLimit } from "@/lib/limit";
+import { checkLimit, increaseLimit } from "@/lib/limit";
 import { useAuth } from "@clerk/clerk-react";
 import { NextResponse } from "next/server";
 import Replicate from "replicate";
@@ -43,7 +43,7 @@ export async function POST(
       }
     });
 
-    await IncreaseLimit();
+    await increaseLimit();
     return NextResponse.json(response);
 
   } catch (e) {

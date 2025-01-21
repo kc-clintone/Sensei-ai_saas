@@ -3,7 +3,7 @@ import prisma from "@/lib/db";
 
 const FREE_LIMIT = 10;
 
-export const IncreaseLimit = async () => {
+export const increaseLimit = async () => {
   const {userId} = useAuth();
 
   if (!userId) {
@@ -36,7 +36,7 @@ export const checkLimit = async () => {
   const {userId} = useAuth();
 
   if (!userId) {
-    return 0;
+    return false;
   }
 
   const limit = await prisma.userLimit.findUnique({

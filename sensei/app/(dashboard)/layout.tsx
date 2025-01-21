@@ -1,5 +1,3 @@
-"use client";
-
 import Navbar from "@/components/ui/navbar";
 import Sidebar from "@/components/ui/sidebar";
 import { getLimit } from "@/lib/limit";
