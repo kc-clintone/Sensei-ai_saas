@@ -1,5 +1,7 @@
 import { useAuth } from "@clerk/nextjs";
 import prisma from "@/lib/db";
+import { getAuth } from "@clerk/nextjs/server";
+import { headers } from "next/headers";
 
 const FREE_LIMIT = 10;
 
@@ -52,12 +54,13 @@ export const checkLimit = async () => {
   }
 }
 
-export const getLimit = async () => {
-  const {userId} = useAuth();
+export const getLimit = async (): Promise<number> => {
 
-  if (!userId) {
-    return 0;
-  }
+  const requestHeaders = Object.fromEntries(headers().entries());
+
+  const { userId } = getAuth({ headers: requestHeaders });
+
+  if (!userId) return 0;
 
   const limit = await prisma.userLimit.findUnique({
     where: {
@@ -65,9 +68,7 @@ export const getLimit = async () => {
     },
   });
 
-  if (!limit) {
-    return 0;
-  }
+  if (!limit) return 0;
 
   return limit.limit;
 }
