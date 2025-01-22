@@ -31,6 +31,38 @@ export async function GET() {
       }));
     }
 
+    const session = await mpesa.checkout.sessions.create({
+      success_url: settings,
+      cancel_url: settings,
+      payment_method_types: ["mpesa"],
+      mode: "subscription",
+      billing_address_collection: "auto",
+      customer_email: user.emailAddresses[0].emailAddress,
+      line_items: [
+        {
+          price_data: {
+            currency: "usd",
+            product_data: {
+              name: "Sensei AI Pro",
+              description: "AI pro tool unlimited",
+            },
+            unit_amount: 3000,
+            recurring: {
+              interval: "month",
+            },
+          },
+          quantity: 1,
+        },
+      ],
+      metadata: {
+        userId,
+      },
+    });
+
+    return new NextResponse(JSON.stringify({
+      url: session.url
+    }));
+
   } catch (error) {
     console.log("[AN ERROR OCCURED]", error);
     return new NextResponse("Internal server erroe", {status: 500});
