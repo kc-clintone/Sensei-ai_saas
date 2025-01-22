@@ -64,11 +64,12 @@ export const Modal = () => {
       <DialogContent>
         <DialogHeader>
           <DialogTitle className="flex-col pb-2 gap-y-4 items-center justify-center flex">
-            <div className="flex gap-x-2 itemsc-center justify-center font-bold py-1.5">
+            <div className="flex gap-x-2 itemsc-center justify-center font-bold py-1">
               Upgrade to Sensei AI
               <Badge className="py-1 uppercase text-sm" variant="pro">
-                premeium
+                pro
               </Badge>
+                to get unlimited access to all features
             </div>
           </DialogTitle>
           <DialogDescription className="space-y-2 text-zinc-500 font-medium pt-2 text-center">

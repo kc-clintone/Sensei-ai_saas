@@ -1,12 +1,10 @@
-import { useAuth } from "@clerk/nextjs";
 import prisma from "@/lib/db";
-import { getAuth } from "@clerk/nextjs/server";
-import { headers } from "next/headers";
+import { auth } from "@clerk/nextjs/server";
 
 const FREE_LIMIT = 10;
 
 export const increaseLimit = async () => {
-  const {userId} = useAuth();
+  const {userId} = await auth();
 
   if (!userId) {
     return;
@@ -35,7 +33,7 @@ export const increaseLimit = async () => {
 
 
 export const checkLimit = async () => {
-  const {userId} = useAuth();
+  const {userId} = await auth();
 
   if (!userId) {
     return false;
@@ -56,9 +54,7 @@ export const checkLimit = async () => {
 
 export const getLimit = async (): Promise<number> => {
 
-  const requestHeaders = Object.fromEntries(headers().entries());
-
-  const { userId } = getAuth({ headers: requestHeaders });
+  const {userId} = await auth();
 
   if (!userId) return 0;
 
