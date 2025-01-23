@@ -21,6 +21,7 @@ import { useState } from "react";
 import { Nothing } from "@/components/ui/nothing";
 import { Loader } from "@/components/ui/loader";
 import { useModal } from "@/hooks/usemodal";
+import toast from "react-hot-toast";
 
 const MusicPage = () => {
 
@@ -42,6 +43,8 @@ const MusicPage = () => {
     } catch (err:any) {
       if(err?.response?.status === 403) {
         upgrade.onOpen();
+      } else {
+        toast.error("Oops, Something went wrong!")
       }
     } finally {
       router.refresh();
@@ -109,7 +112,7 @@ const MusicPage = () => {
           { music && !isLoading &&
             (
               <div>
-                <Nothing label="Oops!!! No conversations yet"/>
+                <Nothing label="Oops!!! No music generated yet"/>
               </div>
             )
           }

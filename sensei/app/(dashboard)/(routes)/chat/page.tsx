@@ -24,6 +24,7 @@ import { cn } from "@/lib/utils";
 import { UsrAvater } from "@/components/ui/usr-avatar";
 import { AiAvatar } from "@/components/ui/ai-avatar";
 import { useModal } from "@/hooks/usemodal";
+import toast from "react-hot-toast";
 
 const ChatPage = () => {
 
@@ -57,6 +58,8 @@ const ChatPage = () => {
     } catch (err:any) {
       if(err?.response?.status === 403) {
         upgrade.onOpen();
+      } else {
+        toast.error("Oops, Something went wrong!");
       }
     } finally {
       router.refresh();

@@ -1,5 +1,6 @@
 
 import { checkLimit, increaseLimit } from "@/lib/limit";
+import { checkSubscriptions } from "@/lib/subs";
 import { useAuth } from "@clerk/clerk-react";
 import { NextResponse } from "next/server";
 import Replicate from "replicate";
@@ -16,8 +17,9 @@ export async function POST(
     const body = await req.json();
     const { prompt } = body;
     const checklimit = checkLimit();
+    const isPremium = checkSubscriptions();
 
-    if (!checklimit) {
+    if (!checklimit && !isPremium) {
       return new NextResponse("You have exhausted your free trial", { status: 403 })
     }
 
@@ -43,7 +45,8 @@ export async function POST(
       }
     });
 
-    await increaseLimit();
+    if (!isPremium) await increaseLimit();
+
     return NextResponse.json(response);
 
   } catch (e) {

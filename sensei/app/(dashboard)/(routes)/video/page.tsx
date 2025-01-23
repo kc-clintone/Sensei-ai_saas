@@ -21,6 +21,7 @@ import { useState } from "react";
 import { Nothing } from "@/components/ui/nothing";
 import { Loader } from "@/components/ui/loader";
 import { useModal } from "@/hooks/usemodal";
+import toast from "react-hot-toast";
 
 const VideoPage = () => {
 
@@ -42,6 +43,8 @@ const VideoPage = () => {
     } catch (err:any) {
       if(err?.response?.status === 403) {
         upgrade.onOpen();
+      } else {
+        toast.error("Oops, Something went wrong!");
       }
     } finally {
       router.refresh();
@@ -109,7 +112,7 @@ const VideoPage = () => {
           { video && !isLoading &&
             (
               <div>
-                <Nothing label="Oops!!! No videos yet"/>
+                <Nothing label="Oops!!! No videos here yet"/>
               </div>
             )
           }

@@ -12,10 +12,12 @@ import { useEffect, useState } from "react";
 
 interface MobileMenuProps {
   appLimit: number;
+  isPremium: boolean;
 }
 
 const MobileMenu = ({
-  appLimit
+  appLimit =0,
+  isPremium = false
   }: MobileMenuProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -35,7 +37,7 @@ const MobileMenu = ({
         </Button>
       </SheetTrigger>
       <SheetContent className="p-0" side="right">
-        <Sidebar appLimit={appLimit}/>
+        <Sidebar appLimit={appLimit} isPremium={isPremium}/>
       </SheetContent>
     </Sheet>
 )

@@ -23,6 +23,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "./button";
 import { useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 
 const items = [
@@ -71,7 +72,7 @@ export const Modal = () => {
 
       window.location.href = (await response).data.url;
     } catch (error) {
-      console.log("[STRIPE ERROR]", error);
+      toast.error("Oops, Something went wrong!");
     } finally {
       setLoading(false);
     }
@@ -111,7 +112,7 @@ export const Modal = () => {
         <DialogFooter>
           <Button
             onClick={onSubscribe}
-            
+            disabled={loading}
             className="w-full"
             size="lg"
           >

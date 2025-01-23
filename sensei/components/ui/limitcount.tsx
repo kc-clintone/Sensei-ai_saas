@@ -9,12 +9,14 @@ import { useModal } from "@/hooks/usemodal";
 
 interface LimitCountProps {
   appLimit: number;
+  isPremium: boolean;
 };
 
 const MAX_LIM = 10;
 
 export const LimitCounter = ({
-  appLimit = 0
+  appLimit = 0,
+  isPremium = false
   }: LimitCountProps) => {
   const upgrade = useModal();
   const [mounted, setMounted] = useState(false);
@@ -24,6 +26,8 @@ export const LimitCounter = ({
   }, []);
 
   if (!mounted) return null;
+
+  if (isPremium) return null;
 
   return (
     <div className="px-3.5">
@@ -39,8 +43,8 @@ export const LimitCounter = ({
             />
           </div>
           <Button className="w-full" variant="pro" onClick={upgrade.onOpen}>
-            <ZapIcon className="w-5 h-5 mr-2 fill-yellow-500"/>
-            Upgrade now
+            <ZapIcon className="w-5 h-5 mr-2 fill-white-700"/>
+            Go premium
           </Button>
         </CardContent>
       </Card>

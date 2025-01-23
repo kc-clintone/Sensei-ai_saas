@@ -25,6 +25,7 @@ import { UsrAvater } from "@/components/ui/usr-avatar";
 import ReactMarkdown from "react-markdown";
 import { AiAvatar } from "@/components/ui/ai-avatar";
 import { useModal } from "@/hooks/usemodal";
+import toast from "react-hot-toast";
 
 const CodePage = () => {
 
@@ -58,6 +59,8 @@ const CodePage = () => {
     } catch (err:any) {
       if(err?.response?.status === 403) {
         upgrade.onOpen();
+      } else {
+        toast.error("Oops, Something went wrong!");
       }
     } finally {
       router.refresh();
@@ -125,7 +128,7 @@ const CodePage = () => {
           { messages.length === 0 && !isLoading &&
             (
               <div>
-                <Nothing label="Oops!!! No conversations yet"/>
+                <Nothing label="Oops!!! No code generated yet"/>
               </div>
             )
           }

@@ -20,13 +20,11 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Nothing } from "@/components/ui/nothing";
 import { Loader } from "@/components/ui/loader";
-import { cn } from "@/lib/utils";
-import { UsrAvater } from "@/components/ui/usr-avatar";
-import { AiAvatar } from "@/components/ui/ai-avatar";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardFooter } from "@/components/ui/card";
 import Image from "next/image";
 import { useModal } from "@/hooks/usemodal";
+import toast from "react-hot-toast";
 
 const ImagePage = () => {
 
@@ -52,6 +50,8 @@ const ImagePage = () => {
     } catch (err:any) {
       if(err?.response?.status === 403) {
         upgrade.onOpen();
+      } else {
+        toast.error("Oops, Something went wrong!")
       }
     } finally {
       router.refresh();
@@ -184,7 +184,7 @@ const ImagePage = () => {
           { images.length === 0 && !isLoading &&
             (
               <div>
-                <Nothing label="Oops!!! No images yet"/>
+                <Nothing label="Oops!!! No images here yet"/>
               </div>
             )
           }

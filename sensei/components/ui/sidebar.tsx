@@ -54,6 +54,7 @@ const routes = [{
 
 interface SidebarProps {
   appLimit: number;
+  isPremium: boolean;
 };
 
 const CustomFont = Montserrat({
@@ -62,7 +63,8 @@ const CustomFont = Montserrat({
 })
 
 const Sidebar = ({
-  appLimit = 0
+  appLimit = 0,
+  isPremium = false
 }: SidebarProps) => {
 
   const path = usePathname();
@@ -104,7 +106,7 @@ const Sidebar = ({
         </div>
 
       </div>
-      <LimitCounter appLimit={appLimit} />
+      <LimitCounter isPremium={isPremium} appLimit={appLimit} />
     </div>
   )
 }

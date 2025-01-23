@@ -1,5 +1,6 @@
 
 import { checkLimit, increaseLimit } from "@/lib/limit";
+import { checkSubscriptions } from "@/lib/subs";
 import { useAuth } from "@clerk/clerk-react";
 import { NextResponse } from "next/server";
 import { Configuration, OpenAIApi } from "openai";
@@ -28,8 +29,9 @@ export async function POST(
     const body = await req.json();
     const { messages } = body;
     const checklimit = await checkLimit();
+    const isPremium = await checkSubscriptions();
 
-    if (!checklimit) {
+    if (!checklimit && !isPremium) {
       return new NextResponse("You have exhausted your free trial", { status: 403 })
     }
 
@@ -50,7 +52,8 @@ export async function POST(
       messages: [Instruction, ...messages]
     });
 
-    await increaseLimit();
+    if (!isPremium) await increaseLimit();
+
     return NextResponse.json(res.data.choices[0].message);
 
   } catch (e) {
