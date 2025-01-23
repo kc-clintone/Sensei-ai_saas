@@ -21,6 +21,8 @@ import {
 import { Card } from "./card";
 import { cn } from "@/lib/utils";
 import { Button } from "./button";
+import { useState } from "react";
+import axios from "axios";
 
 
 const items = [
@@ -59,6 +61,22 @@ const items = [
 
 export const Modal = () => {
   const upgrade = useModal();
+
+  const [loading, setLoading] = useState(false);
+
+  const onSubscribe = async () => {
+    setLoading(true);
+    try {
+      const response = axios.get("/api/mpesa");
+
+      window.location.href = (await response).data.url;
+    } catch (error) {
+      console.log("[STRIPE ERROR]", error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <Dialog open={upgrade.isOpen} onOpenChange={upgrade.onClose}>
       <DialogContent>
@@ -69,7 +87,6 @@ export const Modal = () => {
               <Badge className="py-1 uppercase text-sm" variant="pro">
                 pro
               </Badge>
-                to get unlimited access to all features
             </div>
           </DialogTitle>
           <DialogDescription className="space-y-2 text-zinc-500 font-medium pt-2 text-center">
@@ -93,6 +110,8 @@ export const Modal = () => {
         </DialogHeader>
         <DialogFooter>
           <Button
+            onClick={onSubscribe}
+            
             className="w-full"
             size="lg"
           >

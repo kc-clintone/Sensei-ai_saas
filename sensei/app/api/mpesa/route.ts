@@ -34,7 +34,7 @@ export async function GET() {
     const session = await mpesa.checkout.sessions.create({
       success_url: settings,
       cancel_url: settings,
-      payment_method_types: ["mpesa"],
+      payment_method_types: ["card"],
       mode: "subscription",
       billing_address_collection: "auto",
       customer_email: user.emailAddresses[0].emailAddress,
