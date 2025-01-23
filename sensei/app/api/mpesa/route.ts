@@ -57,7 +57,7 @@ export async function GET() {
       metadata: {
         userId,
       },
-    });
+    } as any);
 
     return new NextResponse(JSON.stringify({
       url: session.url
