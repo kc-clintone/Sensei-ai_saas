@@ -1,3 +1,5 @@
+"use client";
+
 import { useAuth } from "@clerk/nextjs";
 import { Montserrat } from "next/font/google";
 import Image from "next/image";
@@ -23,7 +25,7 @@ export const LandingNav = () => {
             src="/sensei-logo.png"
           />
         </div>
-        <h1 className={cn("text-2xl text-white font-bold", font.className)}>Sensei</h1>
+        <h1 className={cn("text-2xl text-gray-800 font-bold", font.className)}>Sensei</h1>
       </Link>
       <div className="flex items-center gap-x-2">
         <Link href={isSignedIn ? "/dashboard" : "/sign-up"}>
