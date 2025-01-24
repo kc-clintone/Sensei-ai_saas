@@ -23,7 +23,7 @@ export const LandingContent = () => {
           >
             <CardHeader>
               <CardTitle className="flex items-center justify-around gap-x-2">
-                <div className="rounded-full flex text-white items-center justify-center bg-gray-400 p-4">
+                <div className="rounded-sm flex text-white items-center justify-center bg-gray-400 p-4">
                   {item.avatar}
                 </div>
                 <div className="flex flex-col">
