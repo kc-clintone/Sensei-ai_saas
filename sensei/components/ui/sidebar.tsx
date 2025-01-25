@@ -70,7 +70,7 @@ const Sidebar = ({
   const path = usePathname();
 
   return (
-    <div className="bg-gray-900 space-y-5 py-5 h-full flex flex-col text-white">
+    <div className="bg-[#eceff1] space-y-5 py-5 h-full flex flex-col text-white">
       <div className="p-3 flex-1">
         <Link href="/dashboard" className="flex mb-14 pl-3 items-center">
           <div className="mr-4 w-9 h-8 relative">
@@ -80,7 +80,7 @@ const Sidebar = ({
               src="/sensei-logo.png"
               />
           </div>
-          <h1 className={cn("text-2xl font-bold", CustomFont.className)}>
+          <h1 className={cn("text-2xl font-bold text-pink-600", CustomFont.className)}>
             Sensei
           </h1>
         </Link>
@@ -92,7 +92,7 @@ const Sidebar = ({
                 href={routeName.href}
                 key={routeName.href}
                 className={cn("group p-3 flex font-medium font-mediu justify-start w-full hover:text-white hover:bg-white/10 transition rounded-lg",
-                path === routeName.href ? "bg-white/10 text-white" : "text-zinc-500")}
+                path === routeName.href ? "bg-white text-zinc-500" : "text-zinc-900")}
               >
                 <div className="flex flex-1 items-center">
                   <routeName.icon className={cn("w-6 h-6 mr-3", routeName.color)} />

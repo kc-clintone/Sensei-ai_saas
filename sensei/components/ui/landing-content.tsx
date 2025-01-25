@@ -4,12 +4,43 @@ import { Card, CardContent, CardHeader, CardTitle } from "./card";
 
 const testimonials = [
   {
-    name: "John Doe",
-    avatar: "JD",
-    title: "Software Engineer",
-    description: "Ever since I started using this app, I have never been elsewhere. Awesome stuff"
+    "name": "John Doe",
+    "avatar": "JD",
+    "title": "Software Engineer",
+    "description": "Ever since I started using this app, I have never been elsewhere."
   },
+  {
+    "name": "Jane Smith",
+    "avatar": "JS",
+    "title": "Product Manager",
+    "description": "This app has completely transformed the way I manage my projects. Highly recommended!"
+  },
+  {
+    "name": "Alice Johnson",
+    "avatar": "AJ",
+    "title": "UX Designer",
+    "description": "The user experience of this app is unmatched. It's intuitive and easy to use."
+  },
+  {
+    "name": "Michael Brown",
+    "avatar": "MB",
+    "title": "Marketing Specialist",
+    "description": "Using this app has doubled my productivity. I can't imagine working without it now."
+  },
+  {
+    "name": "Sophia Williams",
+    "avatar": "SW",
+    "title": "Data Analyst",
+    "description": "The insights I get from this app are invaluable. It has become a critical tool in my workflow."
+  },
+  {
+    "name": "David Lee",
+    "avatar": "DL",
+    "title": "Freelance Writer",
+    "description": "This app makes organizing my projects a breeze. I recommend it to anyone who values efficiency."
+  }
 ]
+
 
 export const LandingContent = () => {
   return (
@@ -19,11 +50,11 @@ export const LandingContent = () => {
         {testimonials.map((item) =>(
           <Card
             key={item.description}
-            className="bg-white text-gray-950 border-none"
+            className="bg-white text-gray-950 border-none shadow-gray-400"
           >
             <CardHeader>
-              <CardTitle className="flex items-center justify-around gap-x-2">
-                <div className="rounded-sm flex text-white items-center justify-center bg-gray-400 p-4">
+              <CardTitle className="flex items-end p-2">
+                <div className="rounded-md flex text-white items-center justify-center bg-gray-400 p-4 mr-2">
                   {item.avatar}
                 </div>
                 <div className="flex flex-col">

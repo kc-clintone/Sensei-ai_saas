@@ -18,8 +18,9 @@ const DashboardLayout = async ({
       <div className="h-full hidden md:flex md:flex-col md:w-72 md:fixed md:inset-y-0 bg-gray-900">
         <Sidebar isPremium={isPremium} appLimit={appLimit}/>
       </div>
-      <main className="md:pl-72">
+      <main className="md:pl-72 bg-white">
         <Navbar/>
+        <div className="h-[1.5px] bg-gray-300 w-full mt-1 mb-3"></div>
         {children}
       </main>
     </div>

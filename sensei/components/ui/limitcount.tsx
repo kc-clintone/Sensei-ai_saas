@@ -31,15 +31,15 @@ export const LimitCounter = ({
 
   return (
     <div className="px-3.5">
-      <Card className="bg-white/10 border-0">
+      <Card className="backdrop-opacity-60 border-0 shadow-sm">
         <CardContent className="py-5">
-          <div className="text-center text-sm space-y-2 mb-4 text-white">
+          <div className="text-center text-sm space-y-2 mb-4 text-zinc-900">
             <p className="font-medium">
               You've used {appLimit} / {MAX_LIM} of your free trials
             </p>
             <Progress
               value={appLimit / MAX_LIM * 100}
-              className="h-3"
+              className="h-3 bg-[#eceff1]"
             />
           </div>
           <Button className="w-full" variant="pro" onClick={upgrade.onOpen}>

@@ -32,7 +32,7 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <CrispProvider/>
-        <body>
+        <body className="bg-white">
           <ModalProvider />
           <ToastProvider/>
           {children}

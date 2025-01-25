@@ -55,7 +55,7 @@ function Dashboard() {
           Feel the power of Sensei AI
         </h2>
         <p className="text-center text-muted-foreground text-sm md:text-lg">
-          Sensei AI is a powerful AI tool that simplifies most of your daily tasks.
+          Sensei AI is a powerful, multi-model AI tool that simplifies most of your daily tasks.
         </p>
       </div>
 
