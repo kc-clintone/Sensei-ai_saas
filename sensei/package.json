@@ -1,12 +1,12 @@
 {
-  "name": "sensei"
-  "version": "0.1.0"
+  "name": "sensei",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-     "dev": "next dev -H localhost"
-     "build": "next build"
-     "start": "next start"
-     "lint": "next lint"
+     "dev": "next dev -H localhost",
+     "build": "next build",
+     "start": "next start",
+     "lint": "next lint",
      "postinstall": "prisma generate"
   },
     "dependencies": {
@@ -23,16 +23,16 @@
     "@radix-ui/react-select": "^2.1.4",
     "@radix-ui/react-slot": "^1.1.1",
     "axios": "^1.7.9",
-    "class-variance-authority": "^0.7.1"
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "crisp-sdk-web": "^1.0.25",
-    "lucide-react": "^0.468.0"
-    "next": "^15.1.4"
+    "lucide-react": "^0.468.0",
+    "next": "^15.1.4",
     "openai": "^3.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-hook-form": "^7.54.2"
-    "react-hot-toast": "^2.5.1"
+    "react-hook-form": "^7.54.2",
+    "react-hot-toast": "^2.5.1",
     "react-markdown": "^9.0.3",
     "replicate": "^1.0.1",
     "stripe": "^17.5.0",
