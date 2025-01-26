@@ -19,7 +19,7 @@ const SettingsPage = async () => {
 
       <div className="px-4 lg:px-8 space-y-4">
         <div className="text-muted-foreground text-sm">
-          {isPremium ? "You are currently on a premium plan" : "You are on a free tier"}
+          {isPremium ? "You are currently on a premium plan. You will be notified once the current plan expires." : "You are on a free tier, upgrade to a paid plan to get the most out of Sensei AI."}
         </div>
         <SubBtn isPremium={isPremium}/>
       </div>

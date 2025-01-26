@@ -31,19 +31,11 @@ export async function POST(
       return new NextResponse("A prompt is required", {status: 400})
     }
 
-    const response = await replicate.run(
-      "zsxkib/mmaudio:4b9f801a167b1f6cc2db6ba7ffdeb307630bf411841d4e8300e63ca992de0be9",
-      {
-        input: {
-        seed: -1,
-        video: "https://huggingface.co/hkchengrex/MMAudio/resolve/main/examples/sora_galloping.mp4",
-        prompt: prompt,
-        duration: 8,
-        num_steps: 25,
-        cfg_strength: 4.5,
-        negative_prompt: "music"
-      }
-    });
+    const input = {
+      prompt_b: prompt
+    };
+
+    const response = await replicate.run("riffusion/riffusion:8cf61ea6c56afd61d8f5b9ffd14d7c216c0a93844ce2d82ac1c9ecc9c7f24e05", { input });
 
     if (!isPremium) await increaseLimit();
 

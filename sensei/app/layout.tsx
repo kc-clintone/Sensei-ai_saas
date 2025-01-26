@@ -31,11 +31,11 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <CrispProvider/>
         <body className="bg-white">
           <ModalProvider />
           <ToastProvider/>
           {children}
+          <script src="//code.tidio.co/u40dtat5hfth1rdnyjhp4l0hc4xfmrt8.js" async></script>
         </body>
       </html>
     </ClerkProvider>
