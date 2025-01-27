@@ -34,12 +34,22 @@ The **Sensei AI** project is an all-in-one AI-powered software platform designed
 
 
 ### Screenshots
+
+Here are some screenshots of the live webapp in action
 #### Landingpage
 ![Landing Page](./sensei/assets/Screenshot_20250126-195942.jpg)
 
 #### Dashboard
 ![Dashboard](./sensei/assets/Screenshot_20250127-125247.jpg)
 
+#### Upgrade to pro modal
+![Upgrade](./sensei/assets/Screenshot_20250127-125326.jpg)
+
+#### Client support chatbot
+![Chatbot](./sensei/assets/Screenshot_20250127-125357.jpg)
+
+#### Stripe subsription page
+![Stripe](./sensei/assets/Screenshot_20250127-125432.jpg)
 
 ---
 
