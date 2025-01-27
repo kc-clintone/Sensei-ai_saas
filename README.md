@@ -2,6 +2,8 @@
 
 The **Sensei AI** project is an all-in-one AI-powered software platform designed to provide multiple functionalities, including AI-based chat, code generation, image generation, video processing, music generation, and more. This project leverages modern web technologies and TypeScript to deliver a seamless and scalable experience.
 
+
+
 ## Table of Contents
 - [Features](#features)
 - [Tech Stack](#tech-stack)
@@ -29,6 +31,12 @@ The **Sensei AI** project is an all-in-one AI-powered software platform designed
 - **Responsive UI**: Built with reusable components and fully responsive layouts.
 - **Integration with AI Models**: Seamless backend APIs for AI functionalities.
 - **Payment API**: Integration with MPesa for handling subscriptions and payments.
+
+
+### Screenshots
+![Landing Page](./sensei/assets/Screenshot_20250126-195942.jpg)
+![Dashboard](./sensei/assets/Screenshot_20250127-125247.jpg)
+
 
 ---
 
