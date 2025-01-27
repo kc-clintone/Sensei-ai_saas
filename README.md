@@ -34,7 +34,10 @@ The **Sensei AI** project is an all-in-one AI-powered software platform designed
 
 
 ### Screenshots
+#### Landingpage
 ![Landing Page](./sensei/assets/Screenshot_20250126-195942.jpg)
+
+#### Dashboard
 ![Dashboard](./sensei/assets/Screenshot_20250127-125247.jpg)
 
 
